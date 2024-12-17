@@ -12,24 +12,24 @@ else
   DOCKER_COMPOSE_COMMAND = docker compose
 endif
 
-remove-tls:
+delete-tls:
 	find tls/certs -name ca -prune -or -type d -mindepth 1 -exec rm -rfv {} +
 
-gen-tls:		    
+create-tls:		    
 	docker compose up --build tls
 
-setup-users:
+create-users:
 	docker compose  up --build setup --force-recreate
 
-all:		    ## Start Elk and all its component (ELK, Monitoring, and Tools).
+up-all:		    ## Start Elk and all its component (ELK, Monitoring, and Tools).
 	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_ALL_FILES} up -d ${ELK_ALL_SERVICES}
 
-metric-heart-beat:
+up-metric-heart-beat:
 	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_ALL_FILES} up --build -d ${ELK_EXTENSIONS}
 
-down:		    ## Shutdown Elk and all its component (ELK, Monitoring, and Tools).
+down-all:		    ## Shutdown Elk and all its component (ELK, Monitoring, and Tools).
 	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_ALL_FILES} down
 
-delete:		    ## Shutdown Elk and all its component (ELK, Monitoring, and Tools).
+delete-all:		    ## Shutdown Elk and all its component (ELK, Monitoring, and Tools).
 	$(DOCKER_COMPOSE_COMMAND) ${COMPOSE_ALL_FILES} down -v
 

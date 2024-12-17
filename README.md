@@ -49,6 +49,27 @@ docker compose up
 
 ---
 
+## Run by Makefile
+- Create TLS 
+```sh
+make create-tls
+```
+- Create users
+```sh
+make create-users
+```
+
+- Up core services
+```sh
+make up-all
+```
+
+- Up system metrics beat
+```sh
+make up-metric-heart-beat
+```
+
+
 ## Philosophy
 
 We aim at providing the simplest possible entry into the Elastic stack for anybody who feels like experimenting with
